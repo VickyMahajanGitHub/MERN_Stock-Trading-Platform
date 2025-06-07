@@ -1,6 +1,26 @@
-import React from "react";
-import { holdings } from "../data/data"; // Static data import (could be replaced with API using useEffect)
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+// import { holdings } from "../data/data"; // Static data import (could be replaced with API using useEffect)
 const Holdings = () => {
+  // State to hold the holdings data
+  const [holdings, setHoldings] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchHoldings = async () => {
+      try {
+        const response = await axios.get("http://localhost:3002/allHoldings");
+        console.log(response.data);
+        setHoldings(response.data);
+      } catch (err) {
+        console.error("Error fetching holdings:", err);
+        setError("Failed to fetch holdings. Please try again later.");
+      }
+    };
+
+    fetchHoldings();
+  }, []);
+
   return (
     <>
       <h3 className="title">Holdings ({holdings.length})</h3>

@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { positions } from "../data/data"; // useeffect hook to fetch data from api source of data will be from api
 const Positions = () => {
+  const [positions, setPositions] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPositions = async () => {
+      try {
+        const response = await axios.get("http://localhost:3002/allPositions");
+        console.log(response.data);
+        setPositions(response.data);
+      } catch (err) {
+        console.error("Error fetching positions:", err);
+        setError("Failed to fetch positions. Please try again later.");
+      }
+    };
+
+    fetchPositions();
+  }, []);
+
   return (
     <>
       <h3 className="title">Positions ({positions.length})</h3>

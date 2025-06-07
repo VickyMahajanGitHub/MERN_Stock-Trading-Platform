@@ -20,12 +20,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require("./model/PositionsModel");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
 
 const PORT = process.env.PORT || 3002;
 const url = process.env.MONGO_URL;
 
 const app = express();
+app.use(cors());
+app.use(bodyParser.json());
 
 // creating route for dummy data/ default data
 // app.get("/addHoldings", async (req, res) => {
@@ -207,6 +211,17 @@ const app = express();
 
 //   res.status(200).send("Positions added successfully");
 // });
+
+//fetch all holdings from DB
+app.get("/allHoldings", async (req, res) => {
+  const holdings = await HoldingsModel.find({}); 
+  res.status(200).json(holdings);
+});
+
+app.get("/allPositions", async (req, res) => {
+  const positions = await PositionsModel.find({}); 
+  res.status(200).json(positions);
+});
 
 
 const connectDB = async () => {
