@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+
+import GeneralContext from "./GeneralContext";
 import { Tooltip, Grow } from "@mui/material";
 import {
   BarChartOutlined,
@@ -62,10 +65,26 @@ const WatchListItem = ({ stock }) => {
 };
 
 const WatchListActions = ({ uid }) => {
+  const generalContext = useContext(GeneralContext);
+
+  const handleBuyClick = () => {
+    generalContext.openBuyWindow(uid, "BUY"); // Pass mode
+  };
+
+  const handleSellClick = () => {
+    generalContext.openBuyWindow(uid, "SELL"); // New function
+  };
+
   return (
     <span className="actions">
-      <Tooltip title="Buy (B)" arrow TransitionComponent={Grow} placement="top">
-        <button className="buy">Buy</button>
+      <Tooltip
+        title="Buy (B)"
+        arrow
+        TransitionComponent={Grow}
+        placement="top"
+        
+      >
+        <button className="buy" onClick={handleBuyClick}>Buy</button>
       </Tooltip>
       <Tooltip
         title="Sell (S)"
@@ -73,7 +92,7 @@ const WatchListActions = ({ uid }) => {
         TransitionComponent={Grow}
         placement="top"
       >
-        <button className="sell">Sell</button>
+        <button onClick={handleSellClick} className="sell">Sell</button>
       </Tooltip>
 
       <Tooltip

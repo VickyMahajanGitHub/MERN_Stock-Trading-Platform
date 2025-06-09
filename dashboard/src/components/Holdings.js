@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import GeneralContext from "./GeneralContext";
 import axios from "axios";
 // import { holdings } from "../data/data"; // Static data import (could be replaced with API using useEffect)
 const Holdings = () => {
@@ -20,6 +21,9 @@ const Holdings = () => {
 
     fetchHoldings();
   }, []);
+
+
+  
 
   return (
     <>
