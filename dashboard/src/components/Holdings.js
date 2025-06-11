@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { VerticalGraph } from './VerticalGraph';
 import GeneralContext from "./GeneralContext";
 import axios from "axios";
 // import { holdings } from "../data/data"; // Static data import (could be replaced with API using useEffect)
@@ -11,8 +12,8 @@ const Holdings = () => {
     const fetchHoldings = async () => {
       try {
         const response = await axios.get("http://localhost:3002/allHoldings");
-        console.log(response.data);
-        setHoldings(response.data);
+        // console.log(response.data);
+        setHoldings(response.data); // Set data with API Data
       } catch (err) {
         console.error("Error fetching holdings:", err);
         setError("Failed to fetch holdings. Please try again later.");
@@ -23,7 +24,17 @@ const Holdings = () => {
   }, []);
 
 
-  
+  const labels= holdings.map((subArray) => subArray.name);
+  const data ={
+    labels,
+    datasets: [
+      {
+        label: 'Stock Price',
+        data: holdings.map((stock) => stock.price),
+        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+      },
+    ],
+  }
 
   return (
     <>
@@ -84,6 +95,8 @@ const Holdings = () => {
           <p>P&L</p>
         </div>
       </div>
+
+      <VerticalGraph data={data} />
     </>
   );
 };
