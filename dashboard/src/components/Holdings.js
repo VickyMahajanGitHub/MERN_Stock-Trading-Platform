@@ -11,7 +11,7 @@ const Holdings = () => {
   useEffect(() => {
     const fetchHoldings = async () => {
       try {
-        const response = await axios.get("http://localhost:3002/allHoldings");
+        const response = await axios.get("https://mern-stock-trading-platform.vercel.app/allHoldings");
         // console.log(response.data);
         setHoldings(response.data); // Set data with API Data
       } catch (err) {

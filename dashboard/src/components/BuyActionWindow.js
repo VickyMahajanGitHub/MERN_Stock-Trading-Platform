@@ -13,7 +13,7 @@
 //   const ctx = useContext(GeneralContext); // <-- for context functions
 
 //   const handleActionClick=() => {
-//     axios.post("http://localhost:3002/newOrder", {
+//     axios.post("https://mern-stock-trading-platform.vercel.app/newOrder", {
 //       name: uid,
 //       qty: stockQuantity,
 //       price: stockPrice,
@@ -106,7 +106,7 @@ const BuyActionWindow = ({ uid, mode = "BUY" }) => {
 
   const handleActionClick = async () => {
     try {
-      await axios.post("http://localhost:3002/newOrder", {
+      await axios.post("https://mern-stock-trading-platform.vercel.app/newOrder", {
         name: uid,
         qty: stockQuantity,
         price: stockPrice,
@@ -122,7 +122,7 @@ const BuyActionWindow = ({ uid, mode = "BUY" }) => {
 
   const handleUpdateClick = async () => {
     try {
-      await axios.put("http://localhost:3002/updateHolding", {
+      await axios.put("https://mern-stock-trading-platform.vercel.app/updateHolding", {
         name: uid,
         qty: stockQuantity,
         price: stockPrice,
@@ -138,7 +138,7 @@ const BuyActionWindow = ({ uid, mode = "BUY" }) => {
   const handleDeleteClick = async () => {
     if (!window.confirm(`Are you sure you want to delete ${uid}?`)) return;
     try {
-      await axios.delete("http://localhost:3002/deleteHolding", {
+      await axios.delete("https://mern-stock-trading-platform.vercel.app/deleteHolding", {
         data: { name: uid },
       });
       toast.success("Holding deleted");

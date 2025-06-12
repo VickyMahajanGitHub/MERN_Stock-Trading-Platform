@@ -8,7 +8,7 @@ const Positions = () => {
   useEffect(() => {
     const fetchPositions = async () => {
       try {
-        const response = await axios.get("http://localhost:3002/allPositions");
+        const response = await axios.get("https://mern-stock-trading-platform.vercel.app/allPositions");
         console.log(response.data);
         setPositions(response.data);
       } catch (err) {
