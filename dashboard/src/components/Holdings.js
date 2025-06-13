@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { VerticalGraph } from './VerticalGraph';
 import GeneralContext from "./GeneralContext";
 import axios from "axios";
+import { BASE_URL } from "../api/client";
+
+
 // import { holdings } from "../data/data"; // Static data import (could be replaced with API using useEffect)
 const Holdings = () => {
   // State to hold the holdings data
@@ -11,7 +14,7 @@ const Holdings = () => {
   useEffect(() => {
     const fetchHoldings = async () => {
       try {
-        const response = await axios.get("https://mern-stock-trading-platform.vercel.app/allHoldings");
+        const response = await axios.get(`${BASE_URL}/allHoldings`);
         // console.log(response.data);
         setHoldings(response.data); // Set data with API Data
       } catch (err) {

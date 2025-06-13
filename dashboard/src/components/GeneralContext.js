@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BuyActionWindow from "./BuyActionWindow";
+import { BASE_URL } from "../api/client";
 
 const axios = require("axios");
 const GeneralContext = React.createContext({
@@ -12,12 +13,12 @@ const GeneralContext = React.createContext({
 export const GeneralContextProvider = (props) => {
   const [isBuyWindowOpen, setIsBuyWindowOpen] = useState(false);
   const [selectedStockUID, setSelectedStockUID] = useState("");
-  const [tradeMode, setTradeMode] = useState("BUY"); // BUY or SELL
+  const [tradeMode, setTradeMode] = useState("BUY"); 
   const [holdings, setHoldings] = useState([]);
 
     const fetchHoldings = async () => {
     try {
-      const response = await axios.get("https://mern-stock-trading-platform.vercel.app/allHoldings");
+      const response = await axios.get(`${BASE_URL}/allHoldings`);
       setHoldings(response.data);
     } catch (err) {
       console.error("Failed to fetch holdings:", err);
