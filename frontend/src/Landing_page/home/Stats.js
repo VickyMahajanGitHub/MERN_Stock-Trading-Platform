@@ -42,7 +42,7 @@ function Stats() {
             Explore our products{" "}
             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
           </a>
-          <a href="" style={{ textDecoration: "none" }}>
+          <a href=" https://mern-stock-trading-platform-nine.vercel.app/" style={{ textDecoration: "none" }}>
             Try Kite <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
           </a>
         </div>
